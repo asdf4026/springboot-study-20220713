@@ -20,12 +20,17 @@ public class BoardServiceImpl implements BoardService {
 	public CreateBoardRespDto createBoard(CreateBoardReqDto createBoardReqDto) throws Exception {
 		Board boardEntity = createBoardReqDto.toEntity();
 		boolean insertStatus = boardRepository.save(boardEntity) > 0;
-		
 		return boardEntity.toCreateBoardDto(insertStatus);
 	}
 	
 	@Override
 	public ReadBoardRespDto readBoard(int boardcode) throws Exception {
+		return boardRepository.findBoardByBoardcode(boardcode).toReadBoardDto();
+	}
+	
+	@Override
+	public ReadBoardRespDto readBoardList(int page) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
